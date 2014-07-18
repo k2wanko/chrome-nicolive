@@ -1,0 +1,8 @@
+---
+appName:
+  message: Nicolive
+  description: "The name of the application"
+
+appDescription:
+  message: ニコニコ生放送ツール
+  description: "The description of the application"
