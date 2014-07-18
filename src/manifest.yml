@@ -1,8 +1,8 @@
 ---
 
-name: Nicolive
+name: __MSG_app_name__
 version: 0.0.0
-description: ニコニコ生放送ツール
+description: __MSG_app_description__
 manifest_version: 2
 
 default_locale: ja
