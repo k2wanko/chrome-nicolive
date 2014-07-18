@@ -1,8 +1,3 @@
-###
-#
-# 
-# 
-###
 
 chrome.app.runtime.onLaunched.addListener ->
   width = 800
