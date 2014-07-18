@@ -1,4 +1,16 @@
 ---
+
+name: Nicolive
+version: 0.0.0
+description: ニコニコ生放送ツール
+manifest_version: 2
+
+default_locale: ja
+
+icons:
+  128: assets/ic_app.png
+  256: assets/ic_app_x2.png
+
 app:
   background:
     scripts:
@@ -11,12 +23,3 @@ sandbox:
   pages:
     - index.html
 
-manifest_version: 2
-name: Nicolive
-version: 0.0.0
-description: ニコニコ生放送ツール
-
-default_locale: ja
-icons:
-  128: assets/ic_app.png
-  256: assets/ic_app_x2.png
