@@ -14,12 +14,18 @@ icons:
 app:
   background:
     scripts:
+      - chrome-nicolive.js
       - background.js
 
 permissions:
   - storage
+  - https://secure.nicovideo.jp/*
+  - http://*.live.nicovideo.jp/*
+  - http://www.nicovideo.jp/
 
 sandbox:
   pages:
     - index.html
+  scripts:
+    - background.js
 

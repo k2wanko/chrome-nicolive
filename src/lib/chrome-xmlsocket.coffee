@@ -8,8 +8,15 @@
 # check package app.
 return console.error "Not package app." unless chrome?.app?
 
+###
+#
+# class: XMLsocket
+# 
+###
+
 class XMLSocket
   id: null
   
   constructor: ->
+    
     
