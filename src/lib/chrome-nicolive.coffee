@@ -5,12 +5,16 @@
 # 
 ###
 
-#= require lib/request.coffee
+
 do =>
+  
+  #= require request.coffee
+  #= chrome-xmlsocket.coffee
+  
   nicolive = window.nicolive =
     host: 'live.nicovideo.jp'
 
-  nicolive.requestLogin = (email, password)->
+  nicolive.requestLogin = (email, password, callback)->
     url = "https://secure.nicovideo.jp/secure/login?site=niconico"
     params =
       mail_tel: email

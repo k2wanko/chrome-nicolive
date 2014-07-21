@@ -44,9 +44,9 @@ gulp.task 'js', ->
   gulp.src 'src/*.coffee'
   .pipe include()
   .pipe coffee().on( 'coffee:error', gutil.log )
-  #.pipe sourcemaps.init()
-  #.pipe uglify()
-  #.pipe sourcemaps.write( './maps' )
+  .pipe sourcemaps.init()
+  .pipe uglify()
+  .pipe sourcemaps.write( './maps' )
   .pipe gulp.dest 'app/'
     
 gulp.task 'html', ->
