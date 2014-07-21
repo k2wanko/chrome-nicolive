@@ -5,6 +5,8 @@
 # 
 ###
 
+#= require lib/request.coffee
+
 do =>
   
   nicolive = window.nicolive =
@@ -15,10 +17,11 @@ do =>
     params =
       mail_tel: email
       password: password
-    console.log params
-    request.post url, params, (e, body)->
-      callback e if e
-      console.log body
+      next_url: '/my/top'
+
+    request.post url, params, (e, body, xhr)->
+      return callback e if e
+      return callback null, !(xhr.responseText.match /loginBox/)
   
   nicolive.getplayerstatus = (id, callback)->
     url = "http://watch.live.nicovideo.jp/api/getplayerstatus"
