@@ -14,7 +14,6 @@ icons:
 app:
   background:
     scripts:
-      - chrome-nicolive.js
       - background.js
 
 permissions:
@@ -23,9 +22,9 @@ permissions:
   - http://*.live.nicovideo.jp/*
   - http://www.nicovideo.jp/
 
-sandbox:
-  pages:
-    - index.html
-  scripts:
-    - background.js
+# sandbox:
+#   pages:
+#     - index.html
+#   scripts:
+#     - background.js
 
