@@ -2,6 +2,10 @@
 do ($=jQuery)->
   appId = chrome.runtime.id
 
-  sendMessage = window.sendMessage = (msg = {}, callback = (->))->
-    chrome.runtime.sendMessage appId, msg, (res)->
-      console.log "res", res
+  $ ->
+
+    if DEBUG
+      $("#live_id").val "lv186806447"
+
+    $("#live_go").click ->
+      console.log $("#live_id").val()
