@@ -5,11 +5,7 @@
 # 
 ###
 
-
 do =>
-  
-  #= require request.coffee
-  #= chrome-xmlsocket.coffee
   
   nicolive = window.nicolive =
     host: 'live.nicovideo.jp'
@@ -19,8 +15,9 @@ do =>
     params =
       mail_tel: email
       password: password
-  
+    console.log params
     request.post url, params, (e, body)->
+      callback e if e
       console.log body
   
   nicolive.getplayerstatus = (id, callback)->

@@ -22,7 +22,7 @@ gulp.task 'default', ['manifest', 'locales', 'js', 'html', 'css']
 gulp.task 'watch', ['default'], ->
   gulp.watch 'src/manifest.yml', ['manifest']
   gulp.watch 'src/_locales/**/*.yml', ['locales']
-  gulp.watch 'src/*.coffee', ['js']
+  gulp.watch 'src/**/*.coffee', ['js']
   gulp.watch 'src/*.jade', ['html']
   gulp.watch 'src/*.styl', ['css']
 
@@ -44,9 +44,9 @@ gulp.task 'js', ->
   gulp.src 'src/*.coffee'
   .pipe include()
   .pipe coffee().on( 'coffee:error', gutil.log )
-  .pipe sourcemaps.init()
-  .pipe uglify()
-  .pipe sourcemaps.write( './maps' )
+  # .pipe sourcemaps.init()
+  # .pipe uglify()
+  # .pipe sourcemaps.write( './maps' )
   .pipe gulp.dest 'app/'
     
 gulp.task 'html', ->

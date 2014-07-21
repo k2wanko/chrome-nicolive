@@ -1,14 +1,10 @@
 
 appId = chrome.runtime.id
 
-#= require lib/chrome-nicolive.coffee
-#= require lib/commands.coffee
-
+#= require_tree lib/
 
 chrome.runtime.onMessage.addListener (msg, sender, res)->
   return res error: "Unknown" unless sender.id is appId
-
-  console.log msg
 
   if msg?.cmd?
     switch msg.cmd
