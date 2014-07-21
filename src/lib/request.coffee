@@ -10,7 +10,6 @@ do =>
       [callback, params] = [params, callback] unless callback
       query = if params then request._encode(params) else null
       url = url + '?' + query if query
-      console.log "GET ", params, query, url
         
       xhr = new XMLHttpRequest
       xhr.onreadystatechange = do -> request._onreadystatechange xhr, callback
