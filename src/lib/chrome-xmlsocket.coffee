@@ -18,6 +18,17 @@ do =>
       #console.log i, char
       bufView[i] = str.charCodeAt i
     return buf
+  NODE_TYPE = ELEMENT_NODE: 1, TEXT_NODE: 3, CDATA_SECTION_NODE: 4, COMMENT_NODE: 8, DOM: 9
+  parse_xml = (dom)->
+    console.log dom, typeof dom
+    if typeof dom is 'string'
+      str = dom.trim()
+      parser = new window.DOMParser
+      doc = parser.parseFromString str
+      console.log "doc", doc
+    else
+      return null
+    
     
   ###
   #
@@ -43,21 +54,28 @@ do =>
               #console.log 'onReceiveError', arguments if DEBUG
               return unless info.socketId is self.id
               console.log ab2str(info.data)
-              
+            xml_buffer = ""
             chrome.sockets.tcp.onReceive.addListener (info)->
               #console.log 'onReceive', window.data = arguments if DEBUG
               return unless info.socketId is self.id
-              console.log ab2str(info.data)
+              xml_buffer += ab2str(info.data)
+              if 0 < xml_buffer.indexOf '/>'
+                i = (strBuf.indexOf '/>') + 2
+                xml_buffer = xml_buffer.substr i, xml_buffer.length
+              console.log xml_buffer
             self.onready.call self if self.onready
         , 1000
           
     send: (data, callback)->
       console.log "id: #{@id}, data #{data}" if DEBUG
+      self = @
       chrome.sockets.tcp.send @id, str2ab(data), (info)->
         console.log "send: ", info if DEBUG
+        callback.call self if callback
            
     close: (callback)->
-      chrome.sockets.tcp.close @id, callback.bind @
+      callback = ( -> ) unless callback
+      chrome.sockets.tcp.close @id, callback.bind(@)
           
           
         

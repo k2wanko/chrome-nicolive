@@ -4,6 +4,8 @@ do ($=jQuery)->
 
   $ ->
 
+    
+    
     if DEBUG
       nicolive.getCruiseId (err, id)->
         console.error err if err
