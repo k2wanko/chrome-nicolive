@@ -6,6 +6,7 @@
 ###
 
 #= require lib/request.coffee
+#= require lib/chrome-xmlsocket.coffee
 
 do =>
   

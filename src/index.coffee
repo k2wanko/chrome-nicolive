@@ -14,4 +14,15 @@ do ($=jQuery)->
       return unless live_id?.length > 0
       nicolive.getplayerstatus live_id, (err, data)->
         return console.error err if err
-        console.log 'data', data
+        console.log 'data', data if DEBUG
+        ms = data.ms
+        xs = new XMLSocket ms.addr, ms.port
+        xs.onready = ->
+          #console.log xs
+          xs.send '<thread thread="' + ms.thread + '" version="20061206" res_from="-50" scores="1"/>', (info)->
+            
+        
+        
+        new Vue
+          el: "#contents"
+          data: data

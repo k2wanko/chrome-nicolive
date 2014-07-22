@@ -15,6 +15,9 @@ app:
   background:
     scripts:
       - background.js
+sockets:
+  tcp:
+    connect: "*.live.nicovideo.jp"
 
 permissions:
   - storage
