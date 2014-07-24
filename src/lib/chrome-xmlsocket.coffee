@@ -58,7 +58,10 @@ do =>
             chrome.sockets.tcp.onReceive.addListener (info)->
               #console.log 'onReceive', window.data = arguments if DEBUG
               return unless info.socketId is self.id
-              xml_buffer += ab2str(info.data)
+              
+              return console.log ab2str(info.data)
+              ## ToDo: XML_Buffer
+              #xml_buffer += ab2str(info.data)
               if 0 < xml_buffer.indexOf '/>'
                 i = (strBuf.indexOf '/>') + 2
                 xml_buffer = xml_buffer.substr i, xml_buffer.length
