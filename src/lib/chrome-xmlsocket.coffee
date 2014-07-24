@@ -38,6 +38,7 @@ do =>
   class XMLSocket
     id: null
     onready: null
+    onreceive: null
     
     constructor: (@host, @port)->
       self = @
@@ -59,7 +60,10 @@ do =>
               #console.log 'onReceive', window.data = arguments if DEBUG
               return unless info.socketId is self.id
               
-              return console.log ab2str(info.data)
+              xml_buffer =  ab2str(info.data)
+              if self.onreceive?
+                self.onreceive.call self, xml_buffer
+              return
               ## ToDo: XML_Buffer
               #xml_buffer += ab2str(info.data)
               if 0 < xml_buffer.indexOf '/>'
