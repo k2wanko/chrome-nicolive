@@ -26,8 +26,17 @@ do ($=jQuery)->
         console.log 'data', data if DEBUG
         ms = data.ms
         xs = window.xs = new XMLSocket ms.addr, ms.port
-        xs.onreceive = (data)->
-          $('#comments').append data
+
+        # 
+        window.res = []
+        
+        xs.onreceive = (datas)->
+          for data in datas
+            #console.log data
+            res.push data
+            
+            #console.log "onreceive", data
+            #$('#comments').prepend data + "<br><br>"
         xs.onready = ->
           console.log xs if DEBUG
           xs.send '<thread thread="' + ms.thread + '" version="20061206" res_from="-50" scores="1"/>', (info)->
@@ -35,6 +44,6 @@ do ($=jQuery)->
             
         
         
-        new Vue
+        window.contents = new Vue
           el: "#contents"
           data: data
