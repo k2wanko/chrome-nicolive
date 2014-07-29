@@ -1,8 +1,3 @@
-###
-#
-# 
-# 
-###
 
 chrome.app.runtime.onLaunched.addListener ->
   width = 800
@@ -15,3 +10,6 @@ chrome.app.runtime.onLaunched.addListener ->
       height: height
       left: Math.round (screen.availWidth - width) / 2
       top: Math.round (screen.availHeight - height)/ 2
+    
+  , (app_window)->
+    

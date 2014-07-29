@@ -1,18 +1,19 @@
 {
   "name": "nicolive",
   "version": "0.0.0",
-  "devDependencies":{
+  "devDependencies": {
     "coffee-script": "*",
     "gulp": "*",
-    "gulp-util": "*",
-    "gulp-include": "*",
-    "gulp-uglify": "*",
+    "gulp-bower-files": "*",
+    "gulp-clean": "^0.3.1",
     "gulp-coffee": "*",
-    "gulp-sourcemaps": "*",
-    "gulp-yml": "*",
+    "gulp-include": "*",
     "gulp-jade": "*",
+    "gulp-sourcemaps": "*",
     "gulp-stylus": "*",
-    "gulp-zip": "*",
-    "gulp-bower-files": "*"
+    "gulp-uglify": "*",
+    "gulp-util": "*",
+    "gulp-yml": "*",
+    "gulp-zip": "*"
   }
 }

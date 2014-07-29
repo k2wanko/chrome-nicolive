@@ -17,14 +17,22 @@ zip = require 'gulp-zip'
 
 bower = require 'gulp-bower-files'
 
-gulp.task 'default', ['manifest', 'locales', 'scripts', 'html', 'style']
+clean = require 'gulp-clean'
+
+DEBUG = if process.env.NODE_ENV is 'production' then false else true
+
+gulp.task 'default', ['manifest', 'locales', 'js', 'html', 'css']
+
+gulp.task 'clean', ->
+  gulp.src ['app/**/*.json', 'app/*.js', 'app/*.css', 'app/*.html']
+  .pipe clean force: true
 
 gulp.task 'watch', ['default'], ->
   gulp.watch 'src/manifest.yml', ['manifest']
   gulp.watch 'src/_locales/**/*.yml', ['locales']
-  gulp.watch 'src/*.coffee', ['scripts']
+  gulp.watch 'src/**/*.coffee', ['js']
   gulp.watch 'src/*.jade', ['html']
-  gulp.watch 'src/*.styl', ['style']
+  gulp.watch 'src/*.styl', ['css']
 
 gulp.task 'manifest', ->
   gulp.src 'src/manifest.yml'
@@ -40,12 +48,18 @@ gulp.task 'locales', ->
   .pipe yml().on( 'manifest:error', gutil.log )
   .pipe gulp.dest 'app/_locales/'
 
-gulp.task 'scripts', ->
+gulp.task 'js', ->
+
+  options =
+    compress:
+      global_defs:
+        DEBUG: DEBUG
+      
   gulp.src 'src/*.coffee'
   .pipe include()
   .pipe coffee().on( 'coffee:error', gutil.log )
   .pipe sourcemaps.init()
-  .pipe uglify()
+  .pipe uglify options
   .pipe sourcemaps.write( './maps' )
   .pipe gulp.dest 'app/'
     
@@ -54,7 +68,7 @@ gulp.task 'html', ->
   .pipe jade()
   .pipe gulp.dest 'app/'
     
-gulp.task 'style', ->
+gulp.task 'css', ->
   gulp.src 'src/*.styl'
   .pipe stylus()
   .pipe gulp.dest 'app/'
@@ -63,3 +77,6 @@ gulp.task 'package', ['default'], ->
   gulp.src 'app/*'
   .pipe zip 'package.zip'
   .pipe gulp.dest './'
+
+gulp.task 'publish', ->
+  return console.error "Error: Isn't production mode." if DEBUG

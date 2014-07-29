@@ -1,8 +1,18 @@
 doctype
 meta(charset="UTF-8")
 title ChromeApp
+link(rel="stylesheet", href="lib/bootstrap/dist/css/bootstrap.css")
 link(rel="stylesheet", href="style.css")
 
-h1 Hello
+input#live_id(type="text")
+span#live_go.btn.btn-default go
+#contents
+  h2 {{title}}
+  p {{description}}
+  #comments(style="overflow:scroll;height: 300px;")
 
+script(src="lib/jquery/dist/jquery.js")
+script(src="lib/bootstrap/dist/js/bootstrap.js")
+script(src="lib/vue/dist/vue.js")
+script(src="chrome-nicolive.js")
 script(src="index.js")

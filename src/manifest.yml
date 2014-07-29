@@ -1,18 +1,33 @@
 ---
+
+name: __MSG_app_name__
+version: 0.0.0
+description: __MSG_app_description__
+manifest_version: 2
+
+default_locale: ja
+
+icons:
+  128: assets/ic_app.png
+  256: assets/ic_app_x2.png
+
 app:
   background:
     scripts:
       - background.js
+sockets:
+  tcp:
+    connect: "*.live.nicovideo.jp"
 
-#permissions:
-#  - storage
+permissions:
+  - storage
+  - https://secure.nicovideo.jp/*
+  - http://*.live.nicovideo.jp/*
+  - http://www.nicovideo.jp/
 
-manifest_version: 2
-name: Nicolive
-version: 0.0.0
-description: ニコニコ生放送ツール
+# sandbox:
+#   pages:
+#     - index.html
+#   scripts:
+#     - background.js
 
-default_locale: en
-icons:
-  128: assets/ic_app.png
-  256: assets/ic_app_x2.png

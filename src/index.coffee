@@ -1,4 +1,49 @@
-document.addEventListener 'DOMContentLoaded', ->
-  h1 = document.getElementsByTagName 'h1'
-  h1[0].innerText = h1[0].innerText + ' \'Allo' if h1.length > 0
-, false
+
+do ($=jQuery)->
+  appId = chrome.runtime.id
+
+  $ ->
+
+    
+    
+    if DEBUG
+      nicolive.getCruiseId (err, id)->
+        console.error err if err
+        $("#live_id").val id
+    xs = null
+    $("#live_go").click ->
+      live_id = $("#live_id").val()
+      return unless live_id?.length > 0
+
+      if xs?
+        live_id.text 'go'
+        xs.close()
+        xs = null
+        return 
+      
+      nicolive.getplayerstatus live_id, (err, data)->
+        return console.error err if err
+        console.log 'data', data if DEBUG
+        ms = data.ms
+        xs = window.xs = new XMLSocket ms.addr, ms.port
+
+        # 
+        window.res = []
+        
+        xs.onreceive = (datas)->
+          for data in datas
+            #console.log data
+            res.push data
+            
+            #console.log "onreceive", data
+            #$('#comments').prepend data + "<br><br>"
+        xs.onready = ->
+          console.log xs if DEBUG
+          xs.send '<thread thread="' + ms.thread + '" version="20061206" res_from="-50" scores="1"/>', (info)->
+            live_id.text 'close'
+            
+        
+        
+        window.contents = new Vue
+          el: "#contents"
+          data: data
