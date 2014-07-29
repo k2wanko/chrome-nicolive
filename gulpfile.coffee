@@ -15,13 +15,13 @@ stylus = require 'gulp-stylus'
 
 zip = require 'gulp-zip'
 
-bower = require 'gulp-bower-files'
+bower = require 'gulp-bower'
 
 clean = require 'gulp-clean'
 
 DEBUG = if process.env.NODE_ENV is 'production' then false else true
 
-gulp.task 'default', ['manifest', 'locales', 'js', 'html', 'css']
+gulp.task 'default', ['manifest', 'locales', 'bower', 'js', 'html', 'css']
 
 gulp.task 'clean', ->
   gulp.src ['app/**/*.json', 'app/*.js', 'app/*.css', 'app/*.html']
@@ -41,7 +41,6 @@ gulp.task 'manifest', ->
 
 gulp.task 'bower', ->
   bower()
-  .pipe gulp.dest 'app/lib/'
 
 gulp.task 'locales', ->
   gulp.src 'src/_locales/**/*.yml'
